@@ -1,0 +1,16 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argo-aws-kay-in-tls
+  namespace: argocd
+spec:
+  secretName: argo-aws-kay-in-tls
+  duration: 2160h #90day
+  renewBefore: 360h #before 15day
+  issuerRef:
+    name: my-issuer
+    kind: ClusterIssuer
+  commonName: argo.aws-kay.in
+  dnsNames:
+  - argo.aws-kay.in
