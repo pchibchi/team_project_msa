@@ -134,7 +134,7 @@ jobs:
       - name: Update apigateway manifest
         if: github.event_name == 'push' && steps.changes.outputs.gateway == 'true'
         env:
-          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-apigateway:${{ steps.image_tag.outputs.value }}
+          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-apigateway:${{ env.IMAGE_TAG }}
           FILE_PATH: ./msa/apigateway/k8s/depl_svc.yml
         run: |
           yq -i '
@@ -145,7 +145,7 @@ jobs:
       - name: Update member manifest
         if: github.event_name == 'push' && steps.changes.outputs.member == 'true'
         env:
-          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-member-service:${{ steps.image_tag.outputs.value }}
+          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-member-service:${{ env.IMAGE_TAG }}
           FILE_PATH: ./msa/member/k8s/depl_svc.yml
         run: |
           yq -i '
@@ -156,7 +156,7 @@ jobs:
       - name: Update ordering manifest
         if: github.event_name == 'push' && steps.changes.outputs.ordering == 'true'
         env:
-          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-ordering-service:${{ steps.image_tag.outputs.value }}
+          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-ordering-service:${{ env.IMAGE_TAG }}
           FILE_PATH: ./msa/ordering/k8s/depl_svc.yml
         run: |
           yq -i '
@@ -167,7 +167,7 @@ jobs:
       - name: Update product manifest
         if: github.event_name == 'push' && steps.changes.outputs.product == 'true'
         env:
-          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-product-service:${{ steps.image_tag.outputs.value }}
+          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-product-service:${{ env.IMAGE_TAG }}
           FILE_PATH: ./msa/product/k8s/depl_svc.yml
         run: |
           yq -i '
@@ -177,8 +177,8 @@ jobs:
       - name: Configure git identity
         if: github.event_name == 'push'
         run: |
-          git config user.name "${{ vars.COMMIT_USER_NAME }}"
-          git config user.email "${{ vars.COMMIT_USER_EMAIL }}"
+          git config user.name "${{ vars.USER_NAME }}"
+          git config user.email "${{ vars.USER_EMAIL }}"
 
       - name: Commit and push manifest changes
         if: github.event_name == 'push'

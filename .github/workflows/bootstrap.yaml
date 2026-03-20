@@ -54,6 +54,27 @@ jobs:
             -n soldesk \
             --dry-run=client -o yaml | kubectl apply -f -
 
+      - name: Create ArgoCD repo secret
+        env:
+          GITHUB_USERNAME: ${{ vars.USER_NAME }}
+          GITOPS_REPO_URL: https://github.com/${{ vars.REPO }}.git
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          cat <<EOF | kubectl apply -f -
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: gitops-repo-secret
+            namespace: argocd
+            labels:
+              argocd.argoproj.io/secret-type: repository
+          stringData:
+            type: git
+            url: ${GITOPS_REPO_URL}
+            username: ${GITHUB_USERNAME}
+            password: ${GH_PAT}
+          EOF
+
       - name: Apply root-app
         run: |
           kubectl apply -f argocd/root-app.yaml
