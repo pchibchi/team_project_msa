@@ -25,7 +25,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Setup kubectl
-        uses: azure/setup-kubectl@4
+        uses: azure/setup-kubectl@v4
 
       - name: Update kubeconfig
         run: |
