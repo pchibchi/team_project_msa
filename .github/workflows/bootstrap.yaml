@@ -31,7 +31,7 @@ jobs:
         run: |
           aws eks update-kubeconfig \
           --region ap-northeast-2 \
-          --name my-cluster
+          --name dev-my-cluster-team03
       
       - name: Setup CRDs
         run: |
