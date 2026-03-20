@@ -78,7 +78,7 @@ jobs:
       - name: gateway build and push docker image to ecr
         if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.gateway == 'true'
         env:
-          REPOSITORY: apigateway
+          REPOSITORY: team3-apigateway
           DOCKERFILE_PATH: ./msa/apigateway/Dockerfile
           BUILD_CONTEXT: ./msa/apigateway
         run: |
@@ -92,7 +92,7 @@ jobs:
       - name: member build and push docker image to ecr
         if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.member == 'true'
         env:
-          REPOSITORY: member-service
+          REPOSITORY: team3-member-service
           DOCKERFILE_PATH: ./msa/member/Dockerfile
           BUILD_CONTEXT: ./msa/member
         run: |
@@ -104,7 +104,7 @@ jobs:
       - name: order build and push docker image to ecr
         if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.ordering == 'true'
         env:
-          REPOSITORY: ordering-service
+          REPOSITORY: team3-ordering-service
           DOCKERFILE_PATH: ./msa/ordering/Dockerfile
           BUILD_CONTEXT: ./msa/ordering
         run: |
@@ -118,7 +118,7 @@ jobs:
       - name: product build and push docker image to ecr
         if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.product == 'true'
         env:
-          REPOSITORY: product-service
+          REPOSITORY: team3-product-service
           DOCKERFILE_PATH: ./msa/product/Dockerfile
           BUILD_CONTEXT: ./msa/product
         run: |
@@ -128,40 +128,44 @@ jobs:
 
           docker push ${ECR_REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
 
+      # apigateway image tag 수정
       - name: Update apigateway manifest
         if: github.event_name == 'push' && steps.changes.outputs.gateway == 'true'
         env:
-          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/apigateway:${{ steps.image_tag.outputs.value }}
+          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-apigateway:${{ steps.image_tag.outputs.value }}
           FILE_PATH: ./msa/apigateway/k8s/depl_svc.yml
         run: |
           yq -i '
             .spec.template.spec.containers[].image = strenv(FULL_IMAGE)
           ' "${FILE_PATH}"
 
+      # member image tag 수정
       - name: Update member manifest
         if: github.event_name == 'push' && steps.changes.outputs.member == 'true'
         env:
-          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/member-service:${{ steps.image_tag.outputs.value }}
+          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-member-service:${{ steps.image_tag.outputs.value }}
           FILE_PATH: ./msa/member/k8s/depl_svc.yml
         run: |
           yq -i '
             .spec.template.spec.containers[].image = strenv(FULL_IMAGE)
           ' "${FILE_PATH}"
 
+      # ordering image tag 수정
       - name: Update ordering manifest
         if: github.event_name == 'push' && steps.changes.outputs.ordering == 'true'
         env:
-          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/ordering-service:${{ steps.image_tag.outputs.value }}
+          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-ordering-service:${{ steps.image_tag.outputs.value }}
           FILE_PATH: ./msa/ordering/k8s/depl_svc.yml
         run: |
           yq -i '
             .spec.template.spec.containers[].image = strenv(FULL_IMAGE)
           ' "${FILE_PATH}"
 
+      # product image tag 수정
       - name: Update product manifest
         if: github.event_name == 'push' && steps.changes.outputs.product == 'true'
         env:
-          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/product-service:${{ steps.image_tag.outputs.value }}
+          FULL_IMAGE: ${{ env.ECR_REGISTRY }}/team3-product-service:${{ steps.image_tag.outputs.value }}
           FILE_PATH: ./msa/product/k8s/depl_svc.yml
         run: |
           yq -i '
