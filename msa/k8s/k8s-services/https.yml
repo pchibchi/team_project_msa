@@ -32,6 +32,6 @@ spec:
   issuerRef:
     name: my-issuer
     kind: ClusterIssuer
-  commonName: app.aws-esk.in
+  commonName: app.aws-esk.com
   dnsNames:
-    - app.aws-esk.in
+    - app.aws-esk.com

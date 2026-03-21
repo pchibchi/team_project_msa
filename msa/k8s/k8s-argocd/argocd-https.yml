@@ -10,6 +10,6 @@ spec:
   issuerRef:
     name: my-issuer
     kind: ClusterIssuer
-  commonName: argo.aws-esk.in
+  commonName: argo.aws-esk.com
   dnsNames:
-    - argo.aws-esk.in
+    - argo.aws-esk.com

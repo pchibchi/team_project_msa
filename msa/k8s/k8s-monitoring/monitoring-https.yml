@@ -11,5 +11,5 @@ spec:
     name: my-issuer
     kind: ClusterIssuer
   dnsNames:
-    - prometheus.aws-esk.in
-    - grafana.aws-esk.in
+    - prometheus.aws-esk.com
+    - grafana.aws-esk.com

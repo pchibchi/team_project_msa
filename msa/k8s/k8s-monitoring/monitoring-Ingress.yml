@@ -10,11 +10,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - prometheus.aws-esk.in
-        - grafana.aws-esk.in
+        - prometheus.aws-esk.com
+        - grafana.aws-esk.com
       secretName: monitoring-aws-esk-in-tls
   rules:
-    - host: prometheus.aws-esk.in
+    - host: prometheus.aws-esk.com
       http:
         paths:
           - path: /
@@ -25,7 +25,7 @@ spec:
                 port:
                   number: 9090
 
-    - host: grafana.aws-esk.in
+    - host: grafana.aws-esk.com
       http:
         paths:
           - path: /
