@@ -8,18 +8,18 @@ metadata:
     cert-manager.io/cluster-issuer: my-issuer
 spec:
   tls:
-  - hosts:
-      - argo.aws-kay.in
-    secretName: argo-aws-kay-in-tls
+    - hosts:
+        - argo.aws-esk.in
+      secretName: argo-aws-esk-in-tls
   rules:
-  - host: argo.aws-kay.in
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
+    - host: argo.aws-esk.in
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
 
-          backend:
-            service:
-              name: argocd-server
-              port:
-                number: 80
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80

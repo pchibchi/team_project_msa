@@ -19,7 +19,7 @@ spring:
         cors-configurations:
           "[/**]": # 모든 경로에 대해 CORS 적용
             allowedOrigins:
-              - "https://server.aws-kay.in" # 허용할 도메인
+              - "https://app.aws-esk.in" # 허용할 도메인
             allowedMethods: "*" # 모든 HTTP 메서드 허용
             allowedHeaders: "*" # 모든 헤더 허용
             allowedCredentials: true # 쿠키/인증정보 허용
