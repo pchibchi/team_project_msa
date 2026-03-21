@@ -10,7 +10,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-    
+
     steps:
       - name: checkout github
         uses: actions/checkout@v4
@@ -18,10 +18,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
-          # soldesk 계정 identity-based policy 생성 불가로 임시로 accesskey 사용
-          # role-to-assume: arn:aws:iam::683668078297:role/githubActionRole
+          role-to-assume: arn:aws:iam::683668078297:role/githubActionRole
           aws-region: ap-northeast-2
 
       - name: Setup kubectl
@@ -31,8 +28,8 @@ jobs:
         run: |
           aws eks update-kubeconfig \
           --region ap-northeast-2 \
-          --name dev-my-cluster-team03
-      
+          --name t3-dev-my-cluster
+
       - name: Setup CRDs
         run: |
           kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.14.0/cert-manager.yaml
@@ -47,7 +44,7 @@ jobs:
           DB_PW: ${{ secrets.DB_PW }}
         run: |
           kubectl create namespace soldesk --dry-run=client -o yaml | kubectl apply -f -
-          
+
           kubectl create secret generic my-app-secrets \
             --from-literal=DB_HOST="${DB_HOST}" \
             --from-literal=DB_PW="${DB_PW}" \
