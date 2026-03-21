@@ -12,7 +12,7 @@ spec:
     - hosts:
         - prometheus.aws-esk.com
         - grafana.aws-esk.com
-      secretName: monitoring-aws-esk-in-tls
+      secretName: monitoring-aws-esk-com-tls
   rules:
     - host: prometheus.aws-esk.com
       http:

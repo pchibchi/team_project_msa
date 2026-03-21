@@ -1,10 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: argo-aws-esk-in-tls
+  name: argo-aws-esk-com-tls
   namespace: argocd
 spec:
-  secretName: argo-aws-esk-in-tls
+  secretName: argo-aws-esk-com-tls
   duration: 2160h #90day
   renewBefore: 360h #before 15day
   issuerRef:
