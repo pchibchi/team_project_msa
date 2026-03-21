@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: ordering-container
-          image: "683668078297.dkr.ecr.ap-northeast-2.amazonaws.com/team3-ordering-service:1d11c02"
+          image: "683668078297.dkr.ecr.ap-northeast-2.amazonaws.com/team3-ordering-service:de28974"
           ports:
             - containerPort: 8080
           resources:
