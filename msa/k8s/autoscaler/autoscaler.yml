@@ -168,12 +168,12 @@ spec:
           command:
             - ./cluster-autoscaler
             - --v=4
-            - --cluster-name=my-cluster
+            - --cluster-name=t3-dev-my-cluster
             - --stderrthreshold=info
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
             - --expander=least-waste
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/my-cluster
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/t3-dev-my-cluster
           env:
             - name: AWS_REGION
               value: "ap-northeast-2"
