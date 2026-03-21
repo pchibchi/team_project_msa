@@ -69,6 +69,3 @@ spec:
       targetPort: 8080
   selector:
     app: member
-  template:
-    spec:
-      containers: []
