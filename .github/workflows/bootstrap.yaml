@@ -38,19 +38,6 @@ jobs:
           kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
           kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml  --server-side --force-conflicts
 
-      - name: Create my-app-secrets
-        env:
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PW: ${{ secrets.DB_PW }}
-        run: |
-          kubectl create namespace soldesk --dry-run=client -o yaml | kubectl apply -f -
-
-          kubectl create secret generic my-app-secrets \
-            --from-literal=DB_HOST="${DB_HOST}" \
-            --from-literal=DB_PW="${DB_PW}" \
-            -n soldesk \
-            --dry-run=client -o yaml | kubectl apply -f -
-
       # S3 upload용 user 생성을 위한 secret
       - name: Create aws-secret
         env:
@@ -61,6 +48,19 @@ jobs:
             --from-literal=AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
             --from-literal=AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
             --from-literal=AWS_REGION=ap-northeast-2 \
+            -n soldesk \
+            --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Create my-app-secrets
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PW: ${{ secrets.DB_PW }}
+        run: |
+          kubectl create namespace soldesk --dry-run=client -o yaml | kubectl apply -f -
+
+          kubectl create secret generic my-app-secrets \
+            --from-literal=DB_HOST="${DB_HOST}" \
+            --from-literal=DB_PW="${DB_PW}" \
             -n soldesk \
             --dry-run=client -o yaml | kubectl apply -f -
 
