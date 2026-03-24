@@ -41,12 +41,12 @@ jobs:
       # S3 upload용 user 생성을 위한 secret
       - name: Create aws-secret
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          APP_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          APP_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           kubectl create secret generic aws-secret \
-            --from-literal=AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
-            --from-literal=AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
+            --from-literal=AWS_ACCESS_KEY_ID="${APP_ACCESS_KEY_ID}" \
+            --from-literal=AWS_SECRET_ACCESS_KEY="${APP_SECRET_ACCESS_KEY}" \
             --from-literal=AWS_REGION=ap-northeast-2 \
             -n soldesk \
             --dry-run=client -o yaml | kubectl apply -f -
