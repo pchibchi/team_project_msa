@@ -29,7 +29,7 @@ public class MemberController {
     @Value("${jwt.secretKeyRt}")
     private String secretKeyRt;
 
-    public MemberController(MemberService memberService, JwtTokenProvider jwtTokenProvider,@Qualifier("rtdb") RedisTemplate<String, Object> redisTemplate) {
+    public MemberController(MemberService memberService, JwtTokenProvider jwtTokenProvider, @Qualifier("rtdb") RedisTemplate<String, Object> redisTemplate) {
         this.memberService = memberService;
         this.jwtTokenProvider = jwtTokenProvider;
         this.redisTemplate = redisTemplate;
@@ -38,44 +38,53 @@ public class MemberController {
     @PostMapping("/create")
     public ResponseEntity<?> memberCreate(@RequestBody MemberSaveReqDto memberSaveReqDto){
         Long memberId = memberService.save(memberSaveReqDto);
-        return new ResponseEntity<>(memberId, HttpStatus.CREATED);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("id", memberId);
+        response.put("message", "회원가입이 완료되었습니다.");
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PostMapping("/doLogin")
     public ResponseEntity<?> doLogin(@RequestBody LoginDto dto){
-//        email, password 검증
         Member member = memberService.login(dto);
-//        토큰 생성 및 return
         String token = jwtTokenProvider.createToken(member.getId().toString(), member.getRole().toString());
-        String refreshToken = jwtTokenProvider.createRefreshToken(member.getEmail(), member.getRole().toString());
-//        redis에 rt저장
-        redisTemplate.opsForValue().set(member.getEmail(), refreshToken, 200, TimeUnit.DAYS);//200일 ttl
-//        사용자에게 at, rt지급
+        String refreshToken = jwtTokenProvider.createRefreshToken(member.getLoginId(), member.getRole().toString());
+
+        redisTemplate.opsForValue().set(member.getLoginId(), refreshToken, 200, TimeUnit.DAYS);
+
         Map<String, Object> loginInfo = new HashMap<>();
         loginInfo.put("id", member.getId());
+        loginInfo.put("name", member.getName());
+        loginInfo.put("nickname", member.getNickname());
+        loginInfo.put("loginId", member.getLoginId());
+        loginInfo.put("email", member.getEmail());
+        loginInfo.put("role", member.getRole());
         loginInfo.put("token", token);
         loginInfo.put("refreshToken", refreshToken);
+        loginInfo.put("message", "로그인에 성공했습니다.");
         return new ResponseEntity<>(loginInfo, HttpStatus.OK);
     }
 
     @PostMapping("/refresh-token")
     public ResponseEntity<?> generateNewAt(@RequestBody MemberRefreshDto dto){
-//        rt디코딩 후 email추출
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(secretKeyRt)
                 .build()
                 .parseClaimsJws(dto.getRefreshToken())
                 .getBody();
-//        rt를 redis의 rt비교 검증
-        Object rt =  redisTemplate.opsForValue().get(claims.getSubject());
-        if(rt ==null || !rt.toString().equals(dto.getRefreshToken())){
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
-//        at생성하여 지급
-        String token = jwtTokenProvider.createToken(claims.getSubject(), claims.get("role").toString());
-        Map<String, Object> loginInfo = new HashMap<>();
-        loginInfo.put("token", token);
-        return new ResponseEntity<>(loginInfo, HttpStatus.OK);
-    }
 
+        String loginId = claims.getSubject();
+        String redisRt = (String) redisTemplate.opsForValue().get(loginId);
+        if(redisRt == null || !redisRt.equals(dto.getRefreshToken())){
+            return new ResponseEntity<>("refresh token 검증 실패", HttpStatus.BAD_REQUEST);
+        }
+
+        String role = claims.get("role", String.class);
+        String newAccessToken = jwtTokenProvider.createToken(loginId, role);
+
+        Map<String, Object> tokenMap = new HashMap<>();
+        tokenMap.put("token", newAccessToken);
+        return new ResponseEntity<>(tokenMap, HttpStatus.OK);
+    }
 }

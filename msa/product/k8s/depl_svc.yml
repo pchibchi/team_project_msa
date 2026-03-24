@@ -19,16 +19,13 @@ spec:
     spec:
       containers:
         - name: product-container
-          image: "683668078297.dkr.ecr.ap-northeast-2.amazonaws.com/team3-product-service:ad35c75"
+          image: 683668078297.dkr.ecr.ap-northeast-2.amazonaws.com/team3-product-service:latest
           ports:
             - containerPort: 8080
           resources:
-            # 컨테이너가 사용할수 있는 리소스의 최대치
             limits:
               cpu: "1"
               memory: "500Mi"
-            # 컨테이너가 시작될떄 보장받아야 하는 최소 자원
-
             requests:
               cpu: "0.5"
               memory: "250Mi"
@@ -43,19 +40,23 @@ spec:
                 secretKeyRef:
                   name: my-app-secrets
                   key: DB_PW
-          # 컨테이너 상태 확인
-
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: AWS_SECRET_ACCESS_KEY
           readinessProbe:
             httpGet:
-              # healthcheck 경로
               path: /health
               port: 8080
-            # 컨테이너 시작 후 지연
+            initialDelaySeconds: 10
+            periodSeconds: 10
 
-            initialDelaySeconds: 25
-            # 확인 반복 주기
-
-            periodSeconds: 15
 ---
 apiVersion: v1
 kind: Service
@@ -69,6 +70,3 @@ spec:
       targetPort: 8080
   selector:
     app: product
-  template:
-    spec:
-      containers: []
