@@ -1,91 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soldesk Mall</title>
-  <link rel="stylesheet" href="/assets/style.css">
-</head>
-<body>
-  <div class="top-banner">단 하루 특가 · 인기 상품 무료배송 이벤트 진행 중</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soldesk Mall</title>
 
-  <header class="header">
-    <div class="container">
-      <a href="/" class="brand">Soldesk <span class="brand-accent">Mall</span></a>
-      <nav class="nav">
-        <a class="btn btn-secondary" data-guest-only href="/login.html">로그인</a>
-        <a class="btn btn-secondary" data-guest-only href="/signup.html">회원가입</a>
-        <a class="btn btn-primary" data-auth-only style="display:none;" href="/product-create.html">상품등록</a>
-        <div id="userBox"></div>
-      </nav>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+  <body>
+    <div class="top-banner">
+      단 하루 특가 · 인기 상품 무료배송 이벤트 진행 중
     </div>
-  </header>
 
-  <main class="container">
-    <section class="hero hero-commerce">
-      <div class="hero-panel hero-promo">
-        <div class="hero-label-row">
-          <span class="hero-kicker">SPRING COLLECTION</span>
-          <span class="hero-badge">오늘 출발</span>
-        </div>
-        <h1>지금 가장 많이 찾는<br>인기 상품 모음</h1>
-        <p>새로 등록된 상품부터 많이 보는 인기 상품까지 한눈에 확인해보세요.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#productSection">상품 보러가기</a>
-          <a class="btn btn-light" data-guest-only href="/signup.html">신규 회원 혜택 보기</a>
-          <a class="btn btn-light" data-auth-only style="display:none;" href="/product-create.html">새 상품 등록</a>
-        </div>
-        <div class="hero-tags">
-          <span>#무료배송</span>
-          <span>#베스트상품</span>
-          <span>#신상입고</span>
-          <span>#빠른배송</span>
-        </div>
+    <!-- rolling 느낌의 프로모션 바 -->
+    <section class="rolling-bar" aria-label="프로모션 안내">
+      <div class="rolling-track">
+        <span>오늘만 추가 할인</span>
+        <span>·</span>
+        <span>신규 회원 쿠폰 지급</span>
+        <span>·</span>
+        <span>베스트 상품 무료배송</span>
+        <span>·</span>
+        <span>오후 3시 이전 주문 당일 출고</span>
+        <span>·</span>
+        <span>오늘만 추가 할인</span>
+        <span>·</span>
+        <span>신규 회원 쿠폰 지급</span>
+        <span>·</span>
+        <span>베스트 상품 무료배송</span>
+        <span>·</span>
+        <span>오후 3시 이전 주문 당일 출고</span>
       </div>
+    </section>
 
-      <div class="hero-side hero-side-commerce">
-        <article class="mini-card promo-card dark">
-          <div class="mini-card-overline">MEMBER BENEFIT</div>
-          <div class="mini-card-title">신규 회원 쿠폰</div>
-          <div class="mini-card-text">첫 구매 고객 전용 혜택으로 더 가볍게 시작하세요.</div>
+    <header class="header">
+      <div class="container">
+        <a href="/" class="brand"
+          >Team03 <span class="brand-accent">Mall</span></a
+        >
+
+        <nav class="nav">
+          <a class="btn btn-secondary" data-guest-only href="/login.html"
+            >로그인</a
+          >
+          <a class="btn btn-secondary" data-guest-only href="/signup.html"
+            >회원가입</a
+          >
+          <a
+            class="btn btn-primary"
+            data-auth-only
+            style="display: none"
+            href="/product-create.html"
+            >상품등록</a
+          >
+          <div id="userBox"></div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- hero -->
+      <section class="hero hero-commerce">
+        <div class="hero-panel hero-promo">
+          <div class="hero-label-row">
+            <span class="hero-kicker">SPRING COLLECTION</span>
+            <span class="hero-badge">오늘 출발</span>
+          </div>
+
+          <h1>
+            지금 가장 많이 찾는<br />
+            인기 상품 모음
+          </h1>
+
+          <p>
+            새로 등록된 상품부터 많이 보는 인기 상품까지 한눈에 확인해보세요.
+            시즌 특가, 무료배송, 신규 회원 혜택까지 한 번에 만나볼 수 있습니다.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#productSection">상품 보러가기</a>
+            <a class="btn btn-light" data-guest-only href="/signup.html"
+              >신규 회원 혜택 보기</a
+            >
+            <a
+              class="btn btn-light"
+              data-auth-only
+              style="display: none"
+              href="/product-create.html"
+              >새 상품 등록</a
+            >
+          </div>
+
+          <div class="hero-tags">
+            <span>#무료배송</span>
+            <span>#베스트상품</span>
+            <span>#신상입고</span>
+            <span>#빠른배송</span>
+          </div>
+        </div>
+
+        <div class="hero-side hero-side-commerce">
+          <article class="mini-card promo-card dark">
+            <div class="mini-card-overline">MEMBER BENEFIT</div>
+            <div class="mini-card-title">봄 맞이 최고 80% 할인</div>
+            <div class="mini-card-text">
+              첫 구매 고객 전용 혜택과 시즌 한정 쿠폰으로 더 가볍게 시작하세요.
+            </div>
+            <a href="/signup.html" class="mini-card-link" data-guest-only
+              >혜택 받기</a
+            >
+          </article>
+
+          <article class="mini-card promo-card light">
+            <div class="mini-card-overline">CURATION</div>
+            <div class="mini-card-title">지금 많이 보는 상품</div>
+            <div class="mini-card-text">
+              실시간으로 관심이 높은 상품을 빠르게 둘러보고 인기 아이템을 먼저
+              만나보세요.
+            </div>
+            <a href="#productSection" class="mini-card-link">지금 보러가기</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- 중간 지표/혜택 영역 추가 -->
+      <section class="highlight-row" aria-label="쇼핑몰 주요 혜택">
+        <article class="highlight-card">
+          <div class="highlight-label">SPECIAL EVENT</div>
+          <div class="highlight-title">첫 구매 쿠폰</div>
+          <div class="highlight-text">회원가입 즉시 할인 쿠폰 제공</div>
         </article>
-        <article class="mini-card promo-card light">
-          <div class="mini-card-overline">CURATION</div>
-          <div class="mini-card-title">지금 많이 보는 상품</div>
-          <div class="mini-card-text">실시간으로 관심이 높은 상품을 빠르게 둘러보세요.</div>
+
+        <article class="highlight-card">
+          <div class="highlight-label">FAST DELIVERY</div>
+          <div class="highlight-title">오늘 출고</div>
+          <div class="highlight-text">오후 3시 이전 주문 시 빠른 배송</div>
         </article>
-      </div>
-    </section>
 
-    <section class="category-strip" aria-label="카테고리 안내">
-      <div class="category-chip">전체 상품</div>
-      <div class="category-chip">신상품</div>
-      <div class="category-chip">인기 상품</div>
-      <div class="category-chip">빠른 배송</div>
-      <div class="category-chip">추천 상품</div>
-    </section>
+        <article class="highlight-card">
+          <div class="highlight-label">BEST PICK</div>
+          <div class="highlight-title">인기 상품</div>
+          <div class="highlight-text">많이 본 상품을 우선 추천</div>
+        </article>
+      </section>
 
-    <section id="productSection">
-      <div class="section-head">
-        <div>
-          <div class="section-title">전체 상품</div>
-          <div class="section-sub">마음에 드는 상품을 선택해 자세히 확인해보세요.</div>
+      <section class="category-strip" aria-label="카테고리 안내">
+        <div class="category-chip active">전체 상품</div>
+        <div class="category-chip">신상품</div>
+        <div class="category-chip">인기 상품</div>
+        <div class="category-chip">빠른 배송</div>
+        <div class="category-chip">추천 상품</div>
+      </section>
+
+      <section id="productSection">
+        <div class="section-head">
+          <div>
+            <div class="section-title">전체 상품</div>
+            <div class="section-sub">
+              마음에 드는 상품을 선택해 자세히 확인해보세요.
+            </div>
+          </div>
+          <div class="section-sub section-count" id="productCount">
+            상품을 불러오는 중
+          </div>
         </div>
-        <div class="section-sub section-count" id="productCount">상품을 불러오는 중</div>
-      </div>
-      <div id="productList" class="grid"></div>
-    </section>
-  </main>
 
-  <footer class="footer container">
-    <div>Soldesk Mall</div>
-    <div class="footer-sub">감각적인 쇼핑을 위한 셀렉션</div>
-  </footer>
+        <div id="productList" class="grid"></div>
+      </section>
+    </main>
 
-  <script src="/assets/app.js"></script>
-  <script>
-    renderHeader();
-    loadProducts();
-  </script>
-</body>
+    <footer class="footer container">
+      <div>Team03 Mall</div>
+      <div class="footer-sub">감각적인 쇼핑을 위한 셀렉션</div>
+    </footer>
+
+    <script src="/assets/app.js"></script>
+    <script>
+      renderHeader();
+      loadProducts();
+    </script>
+  </body>
 </html>
