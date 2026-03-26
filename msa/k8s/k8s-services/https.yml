@@ -23,15 +23,15 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: app-aws-esk-com-tls
+  name: shop-aws-esk-com-tls
   namespace: soldesk
 spec:
-  secretName: app-aws-esk-com-tls
+  secretName: shop-aws-esk-com-tls
   duration: 2160h #90day
   renewBefore: 360h #before 15day
   issuerRef:
     name: my-issuer
     kind: ClusterIssuer
-  commonName: app.aws-esk.com
+  commonName: shop.aws-esk.com
   dnsNames:
-    - app.aws-esk.com
+    - shop.aws-esk.com
