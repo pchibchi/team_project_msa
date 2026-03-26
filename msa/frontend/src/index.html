@@ -4,206 +4,230 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Soldesk Mall</title>
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="/assets/style.css" />
   </head>
   <body>
-    <div class="site-shell">
-      <div class="utility-bar">
-        <div class="container utility-inner">
-          <span>CURATED COMMERCE EXPERIENCE</span>
-          <span>신규 회원 혜택</span>
-          <span>오늘 주문 시 빠른 출고</span>
+    <div class="top-banner">
+      SPRING BLOOM WEEK · 봄맞이 인기 상품과 신규 회원 혜택을 한곳에서
+      확인하세요
+    </div>
+
+    <header class="header">
+      <div class="container header-shell">
+        <a href="/" class="brand"
+          >Soldesk <span class="brand-accent">Bloom</span></a
+        >
+
+        <nav class="spring-nav" aria-label="주요 메뉴">
+          <a href="#springStory" class="nav-link">기획전</a>
+          <a href="#productSection" class="nav-link">전체 상품</a>
+          <a href="#springBenefits" class="nav-link">혜택 안내</a>
+        </nav>
+
+        <div class="nav">
+          <a class="btn btn-secondary" data-guest-only href="/login.html"
+            >로그인</a
+          >
+          <a class="btn btn-secondary" data-guest-only href="/signup.html"
+            >회원가입</a
+          >
+          <a
+            class="btn btn-primary"
+            data-auth-only
+            style="display: none"
+            href="/product-create.html"
+            >상품등록</a
+          >
+          <div id="userBox"></div>
         </div>
       </div>
+    </header>
 
-      <header class="header">
-        <div class="container header-inner">
-          <a href="index.html" class="brand">
-            <span class="brand-mark">S</span>
-            <span class="brand-copy">
-              <strong>Soldesk Mall</strong>
-              <small>Modern select shop</small>
-            </span>
-          </a>
+    <main>
+      <section class="spring-hero-wrap">
+        <div class="container spring-hero-grid">
+          <article class="hero hero-main-card">
+            <div class="hero-copy">
+              <div class="hero-label-row">
+                <span class="hero-kicker">SPRING CURATION</span>
+                <span class="hero-badge">오늘의 셀렉션</span>
+              </div>
 
-          <nav class="main-nav">
-            <a href="#new-section">New</a>
-            <a href="#collection-section">Collection</a>
-            <a href="#productSection">Shop</a>
-          </nav>
+              <h1>봄처럼 화사한 상품을<br />새로운 배치로 둘러보세요</h1>
+              <p>
+                상품 조회, 상세 이동, 로그인/회원가입, 상품 등록 기능은 그대로
+                유지하면서 메인 화면의 구조만 완전히 새롭게 재구성했습니다.
+              </p>
 
-          <div class="nav-actions">
-            <a class="btn btn-ghost" data-guest-only href="login.html"
-              >로그인</a
-            >
-            <a class="btn btn-outline" data-guest-only href="signup.html"
-              >회원가입</a
-            >
-            <a
-              class="btn btn-primary"
-              data-auth-only
-              style="display: none"
-              href="product-create.html"
-              >상품등록</a
-            >
-            <div id="userBox"></div>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#productSection"
+                  >지금 상품 보기</a
+                >
+                <a class="btn btn-light" data-guest-only href="/signup.html"
+                  >신규 회원 시작하기</a
+                >
+                <a
+                  class="btn btn-light"
+                  data-auth-only
+                  style="display: none"
+                  href="/product-create.html"
+                  >새 상품 등록</a
+                >
+              </div>
+
+              <div class="hero-tags">
+                <span>#봄기획전</span>
+                <span>#베스트셀렉션</span>
+                <span>#신규회원혜택</span>
+                <span>#오늘의추천</span>
+              </div>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+              <div class="petal petal-a"></div>
+              <div class="petal petal-b"></div>
+              <div class="petal petal-c"></div>
+              <div class="visual-card visual-card-top">
+                <span class="visual-title">Fresh Picks</span>
+                <strong>부드러운 컬러와 여백 중심의 새 레이아웃</strong>
+              </div>
+              <div class="visual-card visual-card-bottom">
+                <span class="visual-title">New Structure</span>
+                <strong>상단 소개 → 혜택 → 상품 리스트 흐름으로 재배치</strong>
+              </div>
+            </div>
+          </article>
+
+          <aside class="spring-side-panels">
+            <article class="spring-info-card accent-card">
+              <div class="mini-card-overline">MEMBER BENEFIT</div>
+              <div class="mini-card-title">신규 회원 웰컴 혜택</div>
+              <div class="mini-card-text">
+                가입 후 바로 쇼핑을 시작할 수 있도록 주요 동선을 상단에
+                배치했습니다.
+              </div>
+            </article>
+
+            <article class="spring-info-card soft-card">
+              <div class="mini-card-overline">QUICK FLOW</div>
+              <div class="mini-card-title">상품 탐색 중심 구조</div>
+              <div class="mini-card-text">
+                프로모션 영역 아래에서 바로 전체 상품 리스트로 이어지도록 화면
+                흐름을 단순화했습니다.
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section id="springStory" class="spring-story">
+        <div class="container story-grid">
+          <article class="story-card story-card-large">
+            <span class="story-label">SEASON EDIT</span>
+            <h2>밝은 톤, 부드러운 그림자, 카드형 레이아웃</h2>
+            <p>
+              기존의 단순 목록형 배치를 벗어나, 봄 시즌 기획전처럼 보이도록 상단
+              비주얼과 안내 카드 구조를 적용했습니다.
+            </p>
+          </article>
+
+          <article class="story-card">
+            <span class="story-label">SHOP GUIDE</span>
+            <h3>빠르게 탐색</h3>
+            <p>
+              메인 히어로 이후 바로 상품 섹션으로 이동할 수 있게 CTA 흐름을
+              정리했습니다.
+            </p>
+          </article>
+
+          <article class="story-card">
+            <span class="story-label">DISPLAY</span>
+            <h3>시각적 분리</h3>
+            <p>
+              혜택, 안내, 상품 목록을 각각 다른 카드 영역으로 나눠 가독성을
+              높였습니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="springBenefits" class="spring-benefits">
+        <div class="container">
+          <div class="section-head spring-section-head">
+            <div>
+              <div class="section-title">봄맞이 쇼핑 포인트</div>
+              <div class="section-sub">
+                기능 변경 없이 메인 UI의 정보 배치만 새롭게 조정했습니다.
+              </div>
+            </div>
+          </div>
+
+          <div class="benefit-grid">
+            <article class="benefit-card">
+              <div class="benefit-icon">01</div>
+              <h3>상단 집중형 소개</h3>
+              <p>
+                첫 화면에서 브랜드, 혜택, 이동 버튼을 한 번에 확인할 수
+                있습니다.
+              </p>
+            </article>
+            <article class="benefit-card">
+              <div class="benefit-icon">02</div>
+              <h3>부드러운 봄 컬러</h3>
+              <p>
+                핑크, 크림, 민트 계열을 사용해 더 화사한 쇼핑몰 분위기로
+                전환했습니다.
+              </p>
+            </article>
+            <article class="benefit-card">
+              <div class="benefit-icon">03</div>
+              <h3>상품 중심 하단 구성</h3>
+              <p>
+                상품 카드는 그대로 동작하며, 상세 페이지 이동 흐름도 유지됩니다.
+              </p>
+            </article>
           </div>
         </div>
-      </header>
+      </section>
 
-      <main class="container page-main">
-        <section class="hero-v2">
-          <div class="hero-copy-panel">
-            <div class="hero-topline">SEASONAL EDIT • 2026</div>
-            <h1>완전히 새롭게 바뀐<br />에디토리얼 쇼핑 메인</h1>
-            <p>
-              기존 로그인, 회원가입, 상품등록, 상품 목록 로딩 기능은 유지한 채
-              화면 구조만 전면 재설계했습니다. 최신 브랜드형 커머스 메인처럼
-              강한 비주얼, 명확한 정보 위계, 카드 기반 탐색 구조를 적용했습니다.
-            </p>
-
-            <div class="hero-cta">
-              <a class="btn btn-primary btn-lg" href="#productSection"
-                >상품 보기</a
-              >
-              <a class="btn btn-outline btn-lg" href="#collection-section"
-                >기획전 보기</a
-              >
-            </div>
-
-            <div class="hero-points">
-              <div>
-                <strong>FAST</strong>
-                <span>빠른 탐색 구조</span>
-              </div>
-              <div>
-                <strong>CLEAR</strong>
-                <span>상품 정보 위계 강화</span>
-              </div>
-              <div>
-                <strong>MODERN</strong>
-                <span>최신 커머스 UI 톤</span>
-              </div>
-            </div>
+      <section class="spring-category-band" aria-label="카테고리 안내">
+        <div class="container">
+          <div class="category-strip category-strip-spring">
+            <div class="category-chip">전체 상품</div>
+            <div class="category-chip">봄 추천</div>
+            <div class="category-chip">신상품</div>
+            <div class="category-chip">인기 상품</div>
+            <div class="category-chip">빠른 배송</div>
+            <div class="category-chip">회원 전용 혜택</div>
           </div>
+        </div>
+      </section>
 
-          <div class="hero-visual-panel">
-            <div class="visual-card visual-card-main">
-              <span class="visual-label">MAIN DROP</span>
-              <h2>이번 주 셀렉션</h2>
-              <p>
-                감도 높은 프로모션형 레이아웃으로 첫 화면 집중도를 높였습니다.
-              </p>
-            </div>
-            <div class="visual-subgrid">
-              <div class="visual-card visual-card-dark">
-                <span class="visual-label">BENEFIT</span>
-                <h3>회원 전용 혜택</h3>
-                <p>가입 유도 영역을 더 선명하게 배치</p>
-              </div>
-              <div class="visual-card visual-card-light">
-                <span class="visual-label">BEST</span>
-                <h3>실시간 인기 상품</h3>
-                <p>목록 진입 전 추천 흐름 강화</p>
+      <section id="productSection" class="product-showcase">
+        <div class="container">
+          <div class="section-head product-section-head">
+            <div>
+              <div class="section-title">전체 상품 컬렉션</div>
+              <div class="section-sub">
+                현재 등록된 상품을 새로운 카드형 쇼케이스로 확인해보세요.
               </div>
             </div>
-          </div>
-        </section>
-
-        <section id="new-section" class="insight-strip">
-          <article class="insight-card">
-            <span class="insight-index">01</span>
-            <div>
-              <h3>새로운 메인 구조</h3>
-              <p>프로모션, 추천, 상품 리스트 흐름을 자연스럽게 연결했습니다.</p>
+            <div class="section-sub section-count" id="productCount">
+              상품을 불러오는 중
             </div>
-          </article>
-          <article class="insight-card">
-            <span class="insight-index">02</span>
-            <div>
-              <h3>기능 훅 유지</h3>
-              <p>
-                <code>#productList</code>, <code>#productCount</code>,
-                <code>renderHeader()</code>, <code>loadProducts()</code> 구조
-                유지
-              </p>
-            </div>
-          </article>
-          <article class="insight-card">
-            <span class="insight-index">03</span>
-            <div>
-              <h3>CI/CD 테스트 적합</h3>
-              <p>
-                배포 후 화면 변화가 즉시 드러나는 수준으로 UI를 재구성했습니다.
-              </p>
-            </div>
-          </article>
-        </section>
-
-        <section id="collection-section" class="collection-board">
-          <article class="board-feature">
-            <div class="board-label">EDITORIAL COLLECTION</div>
-            <h2>브랜드 스토리형<br />기획전 배치</h2>
-            <p>단순 배너 대신 잡지형 구성으로 메인 체류 경험을 강화했습니다.</p>
-            <a href="#productSection" class="text-link">상품 리스트로 이동</a>
-          </article>
-
-          <article class="board-tile board-tile-dark">
-            <div class="board-label">MEMBERS</div>
-            <h3>신규 가입 유도</h3>
-            <p>로그인/회원가입 CTA를 헤더와 메인에서 모두 노출</p>
-          </article>
-
-          <article class="board-tile">
-            <div class="board-label">CURATION</div>
-            <h3>큐레이션 강조</h3>
-            <p>기존 단순 리스트 화면보다 탐색 동선이 선명합니다.</p>
-          </article>
-        </section>
-
-        <section class="filter-ribbon" aria-label="카테고리 안내">
-          <span class="ribbon-chip active">All</span>
-          <span class="ribbon-chip">New Arrival</span>
-          <span class="ribbon-chip">Best Seller</span>
-          <span class="ribbon-chip">Fast Shipping</span>
-          <span class="ribbon-chip">Member Pick</span>
-          <span class="ribbon-chip">Today Deal</span>
-        </section>
-
-        <section id="productSection" class="product-zone">
-          <div class="zone-header">
-            <div>
-              <div class="zone-kicker">SHOP ALL ITEMS</div>
-              <h2>전체 상품</h2>
-              <p>
-                상품 데이터와 기능은 유지하고, 카드 비주얼과 정보 표현만 전면
-                개편했습니다.
-              </p>
-            </div>
-            <div class="zone-meta" id="productCount">상품을 불러오는 중</div>
           </div>
 
           <div id="productList" class="grid"></div>
-        </section>
+        </div>
+      </section>
+    </main>
 
-        <section class="bottom-cta">
-          <div>
-            <div class="bottom-kicker">READY FOR DEPLOYMENT TEST</div>
-            <h3>기능은 유지하고 화면만 완전히 새롭게 교체한 버전</h3>
-            <p>
-              정적 HTML/CSS 교체만으로도 빌드 및 배포 결과를 명확히 검증할 수
-              있게 구성했습니다.
-            </p>
-          </div>
-          <div class="bottom-actions">
-            <a class="btn btn-primary" href="#productSection">상품 확인</a>
-            <a class="btn btn-outline" href="signup.html">회원가입</a>
-          </div>
-        </section>
-      </main>
-    </div>
+    <footer class="footer container">
+      <div>Soldesk Bloom Market</div>
+      <div class="footer-sub">Spring mood shopping interface</div>
+    </footer>
 
-    <script src="assets/app.js"></script>
+    <script src="/assets/app.js"></script>
     <script>
       renderHeader();
       loadProducts();
