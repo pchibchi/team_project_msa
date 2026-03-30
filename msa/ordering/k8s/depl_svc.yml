@@ -4,6 +4,7 @@ metadata:
   name: ordering-depl
   namespace: soldesk
 spec:
+  # HPA 충돌 방지
   #replicas: 1
   selector:
     matchLabels:
@@ -43,7 +44,7 @@ spec:
                 secretKeyRef:
                   name: my-app-secrets
                   key: DB_PW
-          # 컨테이너 상태 확인 
+          # 컨테이너 상태 확인
 
           readinessProbe:
             httpGet:

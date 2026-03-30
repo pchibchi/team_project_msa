@@ -4,6 +4,7 @@ metadata:
   name: frontend-depl
   namespace: soldesk
 spec:
+  # HPA 충돌 방지
   #replicas: 1
   selector:
     matchLabels:
